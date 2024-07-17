@@ -14,3 +14,20 @@ public:
         return v;
     }
 };
+
+112. Path Sum
+code:
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int targetSum) {
+      if(root==NULL){return false;}
+        if(root->left==NULL && root->right==NULL){
+            return (root->val==targetSum);
+        }
+        bool ans=false;
+        if(root->left!=NULL){ans=hasPathSum(root->left,targetSum-root->val);}
+        if(root->right!=NULL){ans=ans||hasPathSum(root->right,targetSum-root->val);}
+     
+        return ans;
+    }
+};
