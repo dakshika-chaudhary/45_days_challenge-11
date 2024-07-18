@@ -1,0 +1,133 @@
+BFS of Graph
+  
+  code:
+class Solution {
+  public:
+    // Function to return Breadth First Traversal of given graph.
+    vector<int> bfsOfGraph(int V, vector<int> adj[]) {
+       queue<int>que;
+       int visited[V]={0};
+       visited[0]=1;
+       que.push(0);
+       vector<int>ans;
+       
+       while(que.size()!=0){
+           int node=que.front();
+           que.pop();
+           ans.push_back(node);
+           for(auto x:adj[node]){
+               if(visited[x]!=1){
+                   visited[x]=1;
+               que.push(x);
+               }
+           }
+       }
+       return ans;
+    }
+};
+
+DFS for Graph
+  code:
+  
+  class Solution {
+  public:
+    
+  
+    
+    void dfs(vector<int>&adj[],vector<int>&visited,int node,vector<int>&ans){
+      visited[node]=1;
+       ans.push_back(node);
+       
+      for(auto x:adj[node]){
+              if(!visited[x]){
+              dfs(adj,visited,x,ans);
+              }
+      }  
+    }
+    
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+     vector<int>visited(V,0);
+    
+      vector<int>ans;
+     dfs(adj,visited,0,ans);
+        
+        return ans;
+    }
+};
+
+283. Move Zeroes
+  code:
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n=nums.size();
+     int i=0;
+        int j=1;
+        while(i<n && j<n){
+            if(nums[i]!=0 && nums[j]!=0){
+                i++;
+                j++;
+            }
+            else if(nums[i]==0 && nums[j]!=0){
+                swap(nums[i],nums[j]);
+                i++;
+                j++;
+            }
+            else if(nums[i]==0 && nums[j]==0){
+                j++;
+            }
+            else{
+                i++;
+                j++;
+            }
+            
+        }
+        
+    }
+};
+
+
+203. Remove Linked List Elements
+  code:
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+      if(head==NULL){return NULL;}
+      
+        ListNode*tempA=new ListNode(0);
+       
+        tempA->next=head;
+        ListNode*temp=tempA;
+        
+        while(temp->next!=NULL){
+            if(temp->next->val==val){temp->next=temp->next->next;
+                                    }
+            else{
+                temp=temp->next;
+            }
+            
+        }
+        return tempA->next;
+    }
+};
+
+
+876. Middle of the Linked List
+  code:
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+     if(head==NULL){return NULL;}
+        if(head->next==NULL){return head;}
+        if(head->next->next==NULL){return head->next;}
+        
+        ListNode*slow=head;
+        ListNode*fast=head;
+        
+        while(fast!=NULL && fast->next!=NULL ){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+  
