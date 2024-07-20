@@ -1,0 +1,104 @@
+206. Reverse Linked List
+code:
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode*prev=NULL;
+        ListNode*curr=head;
+        ListNode*nnext=head;
+        
+        while(curr!=NULL){
+            nnext=curr->next;
+             curr->next=prev;
+            prev=curr;
+            curr=nnext;
+           
+        }
+        return prev;
+    
+    }
+};
+
+25. Reverse Nodes in k-Group
+  class Solution {
+public:
+    
+    ListNode*getkthNode(ListNode*temp,int k){
+        k=k-1;
+        while(temp!=NULL && k>0){
+            k--;
+            temp=temp->next;
+        }
+        return temp;  
+    }
+    
+    
+    ListNode*reverse(ListNode*head,int k){
+        ListNode*prev=NULL;
+        ListNode*curr=head;
+        ListNode*Next=head;
+        
+        while(curr!=NULL){
+            Next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=Next;
+            k--;
+        }
+        return prev;
+    }
+    
+    
+    ListNode* reverseKGroup(ListNode* head, int k) {
+     ListNode*temp=head;
+     ListNode*prevNode=NULL;
+        
+       while(temp!=NULL){
+         ListNode*kthNode=getkthNode(temp,k);
+         
+           if(kthNode==NULL){
+               if(prevNode!=NULL){
+               prevNode->next=temp;
+                   break;
+               }
+           }
+           else{
+               ListNode*nextNode=kthNode->next;
+              kthNode->next=NULL;
+               reverse(temp,k); 
+           
+           
+           if(temp==head){head=kthNode;}
+           
+           else{
+               prevNode->next=kthNode;
+           }
+           
+           prevNode=temp;
+           temp=nextNode;
+           } 
+           
+        }
+      
+        return head;
+    }
+};
+
+11. Container With Most Water
+code
+  class Solution {
+public:
+    int maxArea(vector<int>& height) {
+      int l=0;
+     int r=height.size();
+    int maxim=INT_MIN;
+        while(l<r){
+           int lh=height[l];
+            int rh=height[r];
+            int  minh=min(lh,rh);
+            maxim=max(maxim,minh*(l-r));
+            if(lh<rh){l++;}
+            else{r--;}
+        }
+    }
+};
