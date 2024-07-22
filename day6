@@ -79,7 +79,7 @@ public:
     }
 };
 
-INVERT TREE
+SUBTREE OF ANOTHER TREE
 code:
 class Solution {
 public:
