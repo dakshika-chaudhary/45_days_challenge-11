@@ -136,4 +136,36 @@ public:
     }
 };
 
-
+<**********************************///////////////////////////*********************>
+Merge two sorted lists
+code:
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode*tempa=list1;
+        ListNode*tempb=list2;
+        
+        ListNode*tempc;
+        ListNode*c=new ListNode(0);
+       tempc=c;
+        while(tempa!=NULL && tempb!=NULL){
+            if(tempa->val<tempb->val){tempc->next=tempa;
+                                      tempa=tempa->next;
+                                     tempc=tempc->next;}
+            else{tempc->next=tempb;
+                                     tempc=tempc->next;
+                                     tempb=tempb->next;}
+            
+            
+        }
+        
+        if(tempa!=NULL){
+            tempc->next=tempa;
+        }
+        else{
+            tempc->next=tempb;
+        }
+        
+        return c->next;
+    }
+};
