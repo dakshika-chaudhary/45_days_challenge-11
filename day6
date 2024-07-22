@@ -35,6 +35,8 @@ class Solution {
     }
 };
 
+<**********************************************//////////////////////////////////////************************************>
+
 Two Sum
 code:
 class Solution {
@@ -59,7 +61,7 @@ public:
         return v;
     }
 };
-
+<********************************************/////////////////////////////////*****************************************>
 
 INVERT TREE NODE
 code:
@@ -78,7 +80,7 @@ public:
         return root;
     }
 };
-
+<*********************************************************////////////////////////////////******************************>
 SUBTREE OF ANOTHER TREE
 code:
 class Solution {
@@ -104,6 +106,33 @@ public:
       bool right = isSubtree(root->right,subRoot);
           
       return left||right;
+    }
+};
+<*************************************///////////////////////////////////////////*****************************************>
+Remove Dublicatew from sorted Linkedlist
+code:
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+      
+        if(head==NULL || head->next==NULL){return head;}
+        
+        ListNode*tempa=head;
+        ListNode*tempb=head->next;
+        
+        while(tempb!=NULL){
+            if(tempa->val==tempb->val){
+            tempa->next=tempb->next;
+            delete tempb;
+            tempb=tempa->next; 
+            }
+        
+        
+        tempa=tempb;
+        tempb=tempa->next;
+        
+        }
+        return head;
     }
 };
 
