@@ -54,3 +54,43 @@ class Solution
 	
 	}
 };
+
+SPIRAL MATRIX
+code:
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>&v) {
+       vector<int>vec;
+int m = v.size();
+int n = v[0].size();
+        int minr=0;
+        int maxr=m-1;
+
+        int minc=0;
+        int maxc=n-1;
+
+        while(minr<=maxr && minc<=maxc){
+            for(int j=minc;j<=maxc;j++){
+              vec.push_back(v[minr][j]);}
+               minr++;
+               if(minr>maxr||minc>maxc){break;}
+            
+           for(int i=minr;i<=maxr;i++){
+                vec.push_back(v[i][maxc]);}
+                maxc--;
+            if(minr>maxr||minc>maxc){break;}
+
+          for(int j=maxc;j>=minc;j--){
+                vec.push_back(v[maxr][j]);}
+               maxr--;
+            if(minr>maxr||minc>maxc){break;}
+
+             for(int i=maxr;i>=minr;i--){
+                vec.push_back(v[i][minc]);}
+                minc++;
+            if(minr>maxr||minc>maxc){break;}
+        }
+        
+        return vec;
+  }
+};
