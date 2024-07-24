@@ -94,3 +94,59 @@ int n = v[0].size();
         return vec;
   }
 };
+
+SEARCH WORD
+code:
+class Solution {
+public:
+    bool check(vector<vector<char>>& board,int idxi ,int idxj, string word,int wordIdx,vector<vector<int>>&visited){
+       
+        int n=board.size();
+        int m=board[0].size();
+        
+        if(wordIdx==word.length()){
+            return true;}
+       
+       if(idxi<0||idxi>=n || idxj<0 || idxj>=m || board[idxi][idxj]!=word[wordIdx] || visited[idxi][idxj]){
+           return false;
+       }
+        
+        visited[idxi][idxj]=1;
+        
+        int ax[4]={-1, 1, 0, 0};
+         int ay[4]={0, 0, -1, 1};
+         
+         for(int i=0;i<4;i++){
+             int nx=ax[i]+idxi;
+             int ny=ay[i]+idxj;
+             if(check(board,nx,ny,word,wordIdx+1,visited)){
+                 return true;
+            
+            
+         }
+         
+     } 
+        visited[idxi][idxj]=0;
+        
+        return false;
+    }
+    
+    bool exist(vector<vector<char>>& board, string word) {
+      int n=board.size();
+        int m=board[0].size();
+       
+      vector<vector<int>>visited(n,vector<int>(m,0)); 
+       
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(visited[i][j]==0 && board[i][j]==word[0]){
+                    if(check(board,i,j,word,0,visited)){
+                        return true;
+                                                                                                }
+                    }
+            }
+        }
+       
+        return false;
+    }
+};
