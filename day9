@@ -1,0 +1,43 @@
+Delete nodes having greater value on right
+code:
+class Solution
+{
+    public:
+    Node *compute(Node *head)
+    
+    {
+        
+         if (!head) return NULL;
+        stack<Node*>st;
+        Node*temp=head;
+        st.push(temp);
+        
+        while(temp->next!=NULL){
+            temp=temp->next;
+            while (!st.empty() && st.top()->data < temp->data) {
+                st.pop();
+            }
+            st.push(temp);
+           
+        }
+        
+        stack<Node*>at;
+        while(!st.empty()){
+          at.push(st.top());
+          st.pop();
+        }
+        
+        Node*c=new Node(0);
+        Node*tempc=c;
+        
+        while(!at.empty()){
+          tempc->next=new Node(at.top()->data);
+          at.pop();
+          tempc=tempc->next;
+        }
+        
+        return c->next;
+    }
+    
+};
+   
