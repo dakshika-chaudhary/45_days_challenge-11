@@ -81,4 +81,25 @@ public:
        return answer(root,root); 
     }
 };
-   
+
+
+MAXIMUM DEPTH OF BINARY TREE
+code:
+class Solution {
+public:
+    
+    int depth(TreeNode*root){
+       if(root==NULL){return 0;} 
+        if(root->left==NULL && root->right==NULL){return 1;}
+        return 1+max(depth(root->left),depth(root->right));
+        
+    }
+    
+    
+    int maxDepth(TreeNode* root) {
+       if(root==NULL){return 0;}
+        int maxd=INT_MIN;
+        return depth(root);
+        
+    }
+};
