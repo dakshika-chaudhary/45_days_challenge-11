@@ -97,3 +97,37 @@ public:
         return -1;
     }
 };
+<*********************************_--------------------------------**********************************>
+PARTION LINKEDLIST
+code:
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+      
+        ListNode*tempc=new ListNode(0);
+          ListNode*tempcHead=tempc;
+        
+        
+         ListNode* tempa = new ListNode(0);  
+        ListNode* tempaHead = tempa; 
+        ListNode*tempb=head;
+        
+        while(tempb!=NULL){
+            if(tempb->val<x){
+            tempa->next=tempb;
+            
+             tempa=tempa->next;
+                }
+            else{
+                tempc->next=tempb;
+                tempc=tempc->next;
+                
+            }
+             tempb=tempb->next;
+        }
+         tempc->next = NULL;
+        
+        tempa->next=tempcHead->next;
+        return tempaHead->next;
+    }
+};
