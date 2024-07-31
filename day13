@@ -39,3 +39,61 @@ public:
     }
 };
 
+
+"RAT IN A MAZE"
+code:
+//{ Driver Code Starts
+// Initial template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// User function template for C++
+
+class Solution {
+    vector<string>v;
+    void dfs(int x,int y,string s,int n,int m,vector<vector<int>> &mat,vector<vector<int>> &visited){
+        
+        if(x<0 || x>=n ||y<0 ||y>=m){return;}
+        if(mat[x][y]==0 || visited[x][y]==1){return;}
+        if(x==n-1 && y==m-1){v.push_back(s);
+            return;
+        }
+        
+     visited[x][y]=1;
+     
+     dfs(x-1,y,s+'U',n,m,mat,visited);
+      dfs(x+1,y,s+'D',n,m,mat,visited);
+       dfs(x,y-1,s+'L',n,m,mat,visited);
+       dfs(x,y+1,s+'R',n,m,mat,visited);
+
+        visited[x][y]=0;
+    }
+    
+    
+  public:
+    vector<string> findPath(vector<vector<int>> &mat) {
+        int n=mat.size();
+        int m=mat[0].size();
+        
+        
+      
+        vector<vector<int>>visited(n,vector<int>(m,0));
+        
+       if(mat[0][0]==0 || mat[n-1][m-1]==0){
+           return v;
+       }
+       
+       
+       
+       string s="";
+       dfs(0,0,s,n,m,mat,visited);
+       
+       sort(v.begin(),v.end());
+       return v;
+       
+    }
+};
+
