@@ -1,0 +1,44 @@
+"SUBTRATION OF TWO LINKEDLIST"
+code:
+class Solution {
+public:
+    Node* subLinkedList(Node* head1, Node* head2) {
+       
+       Node*tempa=head1;
+        Node*tempb=head2;
+        int suma=0;
+        int sumb=0;
+        
+        while(tempa!=NULL){
+          suma=suma*10+tempa->data;
+          tempa=tempa->next;
+          
+        }
+         while(tempb!=NULL){
+          sumb=sumb*10+tempb->data;
+          tempb=tempb->next;
+        }
+        
+        int ans=abs(suma-sumb);
+        
+        vector<int>v;
+        while(ans!=0){
+            int x=ans%10;
+           ans=ans/10; 
+           v.push_back(x);
+        }
+        
+        Node*node=new Node(0);
+        Node*temp=node;
+        
+        for(int i=v.size()-1;i>=0;i--){
+            
+            temp->next=new Node(v[i]);
+            temp=temp->next;
+        }
+        
+       
+       
+        return node->next;
+    }
+};
